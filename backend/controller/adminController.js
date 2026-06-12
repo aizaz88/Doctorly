@@ -56,8 +56,16 @@ const addDoctor = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
-      resource_type: "image",
+    // AFTER (works everywhere)
+    const imageUpload = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { resource_type: "image" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        },
+      );
+      stream.end(imageFile.buffer);
     });
 
     const doctorData = {
