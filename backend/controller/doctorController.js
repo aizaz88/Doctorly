@@ -121,7 +121,7 @@ const cancelAppointmentDoctor = async (req, res) => {
 // API to get dashboard data for doctor panel
 const doctorDashboard = async (req, res) => {
   try {
-    const { docId } = req.body;
+    const docId  = req.body;
     const appointments = await appointmentModel.find({ docId });
 
     let earnings = 0;
