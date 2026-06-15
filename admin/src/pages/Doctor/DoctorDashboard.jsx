@@ -19,7 +19,7 @@ const DoctorDashboard = () => {
       getDashData();
     }
   }, [dToken]);
-
+  console.log("dashData in component:", dashData);
   return (
     dashData && (
       <div className="m-5">
