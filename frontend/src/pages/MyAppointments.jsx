@@ -166,45 +166,65 @@ const MyAppointments = () => {
             {/* Actions */}
             <div
               className="flex flex-col sm:flex-row md:flex-col gap-3
-                         justify-end md:justify-center"
+             justify-end md:justify-center"
             >
-              {!appointment.payment ? (
-                <button
-                  onClick={() => handlePayOnline(appointment._id, appointment)}
-                  disabled={appointment.cancelled}
-                  className={`w-full sm:w-auto md:min-w-[160px]
-                             text-sm px-4 py-2 border rounded-lg transition font-medium ${
-                               appointment.cancelled
-                                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                 : "bg-blue-600 text-white border-blue-700 hover:bg-blue-900"
-                             }`}
-                >
-                  Pay Online
-                </button>
-              ) : (
+              {appointment.isCompleted ? (
                 <button
                   disabled
                   className="w-full sm:w-auto md:min-w-[160px]
-                             text-sm px-4 py-2 border rounded-lg
-                             bg-green-100 text-green-700 border-green-300 font-medium
-                             cursor-not-allowed flex items-center justify-center gap-2"
+                 text-sm px-4 py-2 border rounded-lg
+                 bg-green-100 text-green-700 border-green-300
+                 font-medium cursor-not-allowed"
                 >
-                  ✓ Paid
+                  ✓ Appointment Completed
                 </button>
-              )}
+              ) : appointment.cancelled ? (
+                <button
+                  disabled
+                  className="w-full sm:w-auto md:min-w-[160px]
+                 text-sm px-4 py-2 border rounded-lg
+                 bg-red-100 text-red-700 border-red-300
+                 font-medium cursor-not-allowed"
+                >
+                  Appointment Cancelled
+                </button>
+              ) : (
+                <>
+                  {!appointment.payment ? (
+                    <button
+                      onClick={() =>
+                        handlePayOnline(appointment._id, appointment)
+                      }
+                      className="w-full sm:w-auto md:min-w-[160px]
+                     text-sm px-4 py-2 border rounded-lg
+                     bg-blue-600 text-white border-blue-700
+                     hover:bg-blue-900 font-medium"
+                    >
+                      Pay Online
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-full sm:w-auto md:min-w-[160px]
+                     text-sm px-4 py-2 border rounded-lg
+                     bg-green-100 text-green-700 border-green-300
+                     font-medium cursor-not-allowed"
+                    >
+                      ✓ Paid
+                    </button>
+                  )}
 
-              <button
-                onClick={() => cancelAppointment(appointment._id)}
-                disabled={appointment.cancelled}
-                className={`w-full sm:w-auto md:min-w-[160px]
-                           text-sm px-4 py-2 border rounded-lg transition font-medium ${
-                             appointment.cancelled
-                               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                               : "bg-red-600 text-white border-red-700 hover:bg-red-900"
-                           }`}
-              >
-                {appointment.cancelled ? "Cancelled" : "Cancel Appointment"}
-              </button>
+                  <button
+                    onClick={() => cancelAppointment(appointment._id)}
+                    className="w-full sm:w-auto md:min-w-[160px]
+                   text-sm px-4 py-2 border rounded-lg
+                   bg-red-600 text-white border-red-700
+                   hover:bg-red-900 font-medium"
+                  >
+                    Cancel Appointment
+                  </button>
+                </>
+              )}
             </div>
           </div>
         ))}
