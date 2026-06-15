@@ -5,6 +5,7 @@ import {
   appointmentsDoctor,
   completeAppointment,
   cancelAppointmentDoctor,
+  doctorDashboard,
 } from "../controller/doctorController.js";
 import authDoctor from "../middleware/authDoctor.js";
 
@@ -15,5 +16,5 @@ doctorRouter.post("/login", loginDoctor);
 doctorRouter.get("/appointments", authDoctor, appointmentsDoctor);
 doctorRouter.post("/complete-appointment", authDoctor, completeAppointment);
 doctorRouter.post("/cancel-appointment", authDoctor, cancelAppointmentDoctor);
-
+doctorRouter.get("/dashboard", authDoctor, doctorDashboard);
 export default doctorRouter;
