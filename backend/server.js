@@ -17,7 +17,15 @@ connectCloudinary();
 
 //Express------------------
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://doctorly-u2uu.vercel.app",
+      "https://doctorly-o2ix.vercel.app",
+    ],
+    credentials: true,
+  }),
+);
 
 //API----
 app.use("/api/admin", adminRouter);

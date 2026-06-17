@@ -16,6 +16,11 @@ const NavBar = () => {
         src={assets.logo2}
         alt=""
       />
+      <NavLink to="https://doctorly-o2ix.vercel.app">
+        <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600 ">
+          Admin Panel
+        </p>
+      </NavLink>
       <ul className="hidden md:flex items-start gap-5 font-medium">
         <NavLink to="/">
           <li className="py-1">HOME</li>
